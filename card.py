@@ -58,5 +58,5 @@ class Player:
         from random import randint
         if len(self.cards_num)==0:
             return 0
-        return self.player_hand.pop()
+
 

@@ -50,7 +50,6 @@ class Player:
         self.name=name
         self.cards_num=cards_num
         self.player_hand=[]
-
     def set_hand(self, deck1:DeckOfCards):
         for i in range(self.cards_num):
             self.player_hand.append(deck1.del_one())

@@ -56,6 +56,6 @@ class Player:
     def get_card(self):
         from random import randint
         if len(self.cards_num)==0:
-            return 0
+            return (0)
 
 

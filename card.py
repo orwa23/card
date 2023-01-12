@@ -75,7 +75,8 @@ class CardGame:
         self.deck = DeckOfCards()
         self.player1 = Player(self.player1_name, self.cards_num)
         self.player2 = Player(self.player2_name, self.cards_num)
-        self.new_game()
+       # self.new_game()
+    #def new_game(self):
 
 
 

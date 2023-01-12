@@ -1,4 +1,4 @@
-
+from random import randint
 class Card:
     def __init__(self,suit:str,value:int):
         self.value=value
@@ -56,11 +56,9 @@ class Player:
         for c in range(self.cards_num):
             self.player_hand.append(deck1.del_one())
     def get_card(self):
-        from random import randint
         if len(self.player_hand) == 0 :
             raise IndexError("Player is out of cards")
-        return self.player_hand.pop(randint(0, len(self.player_hand) - 1))
-
+        return self.player_hand.pop()
     def add_card(self, card) :
         if type(card) != Card:
             raise TypeError("Invalid card object")
@@ -75,8 +73,28 @@ class CardGame:
         self.deck = DeckOfCards()
         self.player1 = Player(self.player1_name, self.cards_num)
         self.player2 = Player(self.player2_name, self.cards_num)
-       # self.new_game()
-    #def new_game(self):
+        self.new_game()
+    def new_game(self):
+        if len(self.player1.player_hand) >0 or len(self.player2.player_hand)>0:
+            print("Error")
+            return
+        self.deck.cards_shuffle()
+        self.player1.set_hand(self.deck)
+        self.player2.set_hand(self.deck)
+    def winner_game(self):
+        if len(self.player1.player_hand) == len(self.player2.player_hand):
+            return None
+        print("no winner it is a tie")
+        if len(self.player1.player_hand) > len(self.player2.player_hand) :
+            print("player 1 winns")
+        elif len(self.player1.player_hand) < len(self.player2.player_hand) :
+            print("player 2 winns")
+        else:
+            return None
+        print("no winner it is a tie")
+if __name__ == '__main__' :
+
+
 
 
 

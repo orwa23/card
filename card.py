@@ -51,11 +51,33 @@ class Player:
         self.cards_num=cards_num
         self.player_hand=[]
     def set_hand(self, deck1:DeckOfCards):
-        for i in range(self.cards_num):
+        if len(deck1.cards) < self.cards_num :
+            raise ValueError("Deck is out of cards")
+        for c in range(self.cards_num):
             self.player_hand.append(deck1.del_one())
     def get_card(self):
         from random import randint
-        if len(self.cards_num)==0:
-            return (0)
+        if len(self.player_hand) == 0 :
+            raise IndexError("Player is out of cards")
+        return self.player_hand.pop(randint(0, len(self.player_hand) - 1))
+
+    def add_card(self, card) :
+        if type(card) != Card:
+            raise TypeError("Invalid card object")
+        self.player_hand.append(card)
+class CardGame:
+    def __init__(self, player1_name:str, player2_name:str, cards_num:int = 26):
+        if cards_num > 26 or cards_num < 10 :
+            cards_num = 26
+        self.player1_name = player1_name
+        self.player2_name = player2_name
+        self.cards_num = cards_num
+        self.deck = DeckOfCards()
+        self.player1 = Player(self.player1_name, self.cards_num)
+        self.player2 = Player(self.player2_name, self.cards_num)
+        self.new_game()
+
+
+
 
 
